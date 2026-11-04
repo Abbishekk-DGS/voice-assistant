@@ -1,0 +1,33 @@
+[project]
+name = "voice-assistant"
+version = "0.1.0"
+description = "A fully offline voice assistant: faster-whisper speech recognition, a local LLM with tool calling, and Piper neural TTS, streamed sentence-by-sentence for low latency."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Abbishekk DGS" }]
+requires-python = ">=3.11"
+dependencies = ["faster-whisper>=1.1", "av>=11,<17", "httpx>=0.27", "numpy>=1.26", "sounddevice>=0.4.6", "piper-tts>=1.2", "soundfile>=0.12"]
+
+[project.urls]
+Homepage = "https://abbishekkdgs.tech"
+Repository = "https://github.com/Abbishekk-DGS/voice-assistant"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+voice-assistant = "voice_assistant.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/voice_assistant"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
